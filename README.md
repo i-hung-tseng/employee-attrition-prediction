@@ -1,6 +1,8 @@
 # 🧠 Employee Attrition Prediction
 
-A machine learning project that predicts whether an employee is likely to leave the company using structured HR data. This project demonstrates full-cycle ML including preprocessing, feature engineering, model training, evaluation, and results visualization.
+A machine learning project that predicts whether an employee is likely to leave the company using structured HR data.
+This project demonstrates full-cycle ML including preprocessing, feature engineering, model training, evaluation, and
+results visualization.
 
 ## 📂 Dataset
 
@@ -22,30 +24,49 @@ A machine learning project that predicts whether an employee is likely to leave 
 pip install -r requirements.txt
 ```
 
-### 2. Load Trained Model
+### 2. Run Experiments & Compare Models
 
-```python
-from keras.models import load_model
+This runs multiple experiments comparing different feature sets and classification thresholds.
 
-model = load_model("saved_models/attrition.keras")
-
-# Example input
-import numpy as np
-sample_input = {
-    "age_zscore": 0.45,
-    "gender_bool": 1,
-    # Add all other required features here...
-}
-prediction = model.predict({k: np.array([v]) for k, v in sample_input.items()})
-print("Prediction:", prediction)
+```bash
+python -m experiments.run_experiments
 ```
 
-### 3. Retrain or Run Experiments
+Results will be printed and saved to reports/, and best models to saved_models/.
+
+### 3. Make Predictions with Trained Model
 
 ```bash
 python experiments/run_experiments.py
 ```
 
-## ✅ Example Results
+### 4. Make Predictions with Trained Model
 
+#### Step 1: Prepare prediction file
+
+Put a file like data/predict.csv (same format as train.csv, but without the attrition label).
+
+#### Step 2: Run prediction script
+
+```bash
+python -m src.run_predict
+```
+
+Example output:
+
+```bash
+樣本 0: 預測為 留任（機率: 0.44）
+樣本 1: 預測為 離職（機率: 0.90）
+樣本 2: 預測為 離職（機率: 0.88）
+...
+```
+
+### 5. Example Results
+
+```bash
+| Feature Set      | Threshold | Train AUC | Test AUC | Accuracy Gap | AUC Gap |
+| ---------------- | --------- | --------- | -------- | ------------ | ------- |
+|   engineered_all | 0.5       | 0.82      | 0.80     | 0.02         | 0.02    |
+|    top12         | 0.4       | 0.79      | 0.78     | 0.01         | 0.01    |
+```
 
