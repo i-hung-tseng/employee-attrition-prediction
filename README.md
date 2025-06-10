@@ -36,15 +36,9 @@ Results will be printed and saved to reports/, and best models to saved_models/.
 
 ### 3. Make Predictions with Trained Model
 
-```bash
-python experiments/run_experiments.py
-```
+#### Step 1: Use prediction file
 
-### 4. Make Predictions with Trained Model
-
-#### Step 1: Prepare prediction file
-
-Put a file like data/predict.csv (same format as train.csv, but without the attrition label).
+We've included a sample file: data/predict.csv, which follows the same format as train.csv but excludes the attrition label.
 
 #### Step 2: Run prediction script
 
@@ -61,7 +55,7 @@ Example output:
 ...
 ```
 
-### 5. Example Results
+### 4. Example Results
 
 ```bash
 | Feature Set      | Threshold | Train AUC | Test AUC | Accuracy Gap | AUC Gap |
