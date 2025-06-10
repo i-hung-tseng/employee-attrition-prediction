@@ -20,3 +20,4 @@ pred_labels = (pred_probs > 0.5).astype(int)
 
 for i, (prob, label) in enumerate(zip(pred_probs, pred_labels)):
     print(f"樣本 {i}: 預測為 {'離職' if label else '留任'}（機率: {prob:.2f}）")
+
