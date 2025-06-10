@@ -6,3 +6,5 @@ keras
 xgboost
 shap
 scikit-learn
+google-ml-edu
+tabulate
